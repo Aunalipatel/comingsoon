@@ -167,7 +167,7 @@ function NavbarComponent() {
         </Nav>
 
         <Nav id="nav1">
-          <Nav.Link style={{ color: 'white' }} classname="p-0 m-0">
+          {/* <Nav.Link style={{ color: 'white' }} classname="p-0 m-0">
             <FontAwesomeIcon
               className="ml-1 mr-4 p-0"
               icon={faPhoneSquareAlt}
@@ -186,7 +186,7 @@ function NavbarComponent() {
             classname="mx-5"
           >
             Cart
-          </Nav.Link>
+          </Nav.Link> */}
 
           {user && (
             <NavDropdown
