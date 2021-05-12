@@ -58,16 +58,16 @@ const HomeScreen2 = () => {
                         <h4 className = "py-3">Choose any one of our Services!</h4>
 
                         <Form>
-                            <Button block variant = "info"  type="submit"  value = "testing" onClick = {storeordertolocal} >Visiting and Diagnosis – 199</Button>
+                            <Button block variant = "info"  type="submit"  value = "Visiting and Diagnosis – 199" onClick = {storeordertolocal} >Visiting and Diagnosis – 199</Button>
                             <h6 className = "pb-2 pt-4" style={{textAlign:"left"}}>Software Issues </h6>
 
-                            <Button block variant = "info"  href="/payment" >BIOS Troubleshooting - 299</Button>
-                            <Button block variant = "info"  href="/payment" >Drivers Troubleshooting - 299 </Button>
-                            <Button block variant = "info"  href="/payment" >Windows Formatting - 399</Button>
+                            <Button block variant = "info"  type="submit"  value = "Software Issues - BIOS Troubleshooting - 299" onClick = {storeordertolocal} >BIOS Troubleshooting - 299</Button>
+                            <Button block variant = "info"  type="submit"  value = "Software Issues - Drivers Troubleshooting - 299" onClick = {storeordertolocal} >Drivers Troubleshooting - 299 </Button>
+                            <Button block variant = "info"  type="submit"  value = "Software Issues - Windows Formatting - 399" onClick = {storeordertolocal} >Windows Formatting - 399</Button>
                             
                             <h6 className = "pb-2 pt-4" style={{textAlign:"left"}}>	Data Backup </h6>
 
-                            <Button block variant = "info"  href="/payment" >100+ GB - 499</Button>
+                            <Button block variant = "info"  type="submit"  value = "Data Backup - 100+ GB - 499" onClick = {storeordertolocal} >100+ GB - 499</Button>
                         </Form>
                         
                 
