@@ -6,8 +6,8 @@ const Auth = {
   userPoolWebClientId: '737k0qeig9h38me9trniukr7tg',
   oauth: {
     domain: 'techguy.auth.us-east-2.amazoncognito.com/',
-    redirectSignIn: 'http://localhost:3000/',
-    redirectSignOut: 'http://localhost:3000/',
+    redirectSignIn: 'https://www.techguy.co.in/',
+    redirectSignOut: 'https://www.techguy.co.in/',
     responseType: 'token',
   },
 };
