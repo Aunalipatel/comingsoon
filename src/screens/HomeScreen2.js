@@ -10,7 +10,6 @@ import {useHistory} from 'react-router-dom';
 const HomeScreen2 = () => {
     
     let history = useHistory() ;
-    let order = ""
     const storeordertolocal = (e) => {
         console.log(e.target.value);
         localStorage.setItem('order',  JSON.stringify(e.target.value));

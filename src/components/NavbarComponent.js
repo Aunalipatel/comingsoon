@@ -2,6 +2,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import './navbar.css';
 import logo from '../screens/assets/images/Logo_blue.png';
 function NavbarComponent() {
@@ -25,6 +27,19 @@ function NavbarComponent() {
                 />
 
                 </Navbar.Brand>
+
+                <Nav id = "nav1"className="mr-auto ">
+
+                    <NavDropdown title="Company" id="nav-company" className = " pl-4  pr-2">
+                        <NavDropdown.Item eventKey="4.1" href = "/aboutus">About Us</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="4.2" href = "/tandc">Terms and Conditions</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="4.3" href = "/privacy-policy">Privacy Policy</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item eventKey="4.4" href = "/refund-policy">Refund Policy</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="4.4" href = "/contact-us">Contact Us</NavDropdown.Item>
+                    </NavDropdown>
+                    
+                </Nav>
                 
             </Navbar>
 
