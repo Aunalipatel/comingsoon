@@ -97,7 +97,7 @@ function NavbarComponent() {
       .catch((err) => console.log('error', err));
   };
   const verifyCode = () => {
-    Auth.confirmSignUp(email, code, {
+    Auth.confirmSignUp(signupEmail, code, {
       forceAliasCreation: true,
     })
       .then((data) => console.log(data))
