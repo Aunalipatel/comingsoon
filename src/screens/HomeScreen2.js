@@ -1,40 +1,34 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
-import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Img from 'react-bootstrap/Image';
 import toon from './assets/images/Toon1.png';
-import {useHistory} from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import lp from './assets/images/laptop_animated.jpg' ;
+import Form from 'react-bootstrap/Form';
+
 const HomeScreen2 = () => {
-    
-    let history = useHistory() ;
-    const storeordertolocal = (e) => {
-        console.log(e.target.value);
-        localStorage.setItem('order',  JSON.stringify(e.target.value));
-        localStorage.setItem('order2',  e.target.value);
-        history.push("/payment")
-
-        
-    }
-
   return (
   <div 
-
+//   style = {{padding: "20 20"}}
   >
 
     
 
     <Container fluid className = "m-0 p-0"  style = {{  backgroundColor: "#265385" }}>
 
-        <Container fluid className = "m-0 p-0 py-2" style = {{  backgroundColor: "#265385" }}>
-            <p className = " mt-5  mb-0 pb-0" style = {{color: "white" , fontSize:"30px"}}><br/> Affordable servicing for your laptops!</p>
+        {/* <Image src= {bg} fluid id = "bghome"/> */}
+
+        
+
+        <Container fluid className = "m-0 p-0" style = {{  backgroundColor: "#265385" }}>
+            <p className = " mt-5 mb-0 pb-0" style = {{color: "white" , fontSize:"40px"}}><br/> Notifications</p>
         </Container>
 
     </Container>
 
-    
+    {/* style = {{ marginTop: "-50px"}} */}
 
     
     
@@ -51,31 +45,95 @@ const HomeScreen2 = () => {
                 <Img src={toon} style={{width:"30vh"}}/>
                 </Col>
 
-                <Col >
-                    <Container style = {{width : "70vh"}}>
+                <Col id = "col" >
+                    {/* <Card >
+                        <Card.Img variant="top" src="holder.js/100px180" />
 
-                        <h4 className = "py-3">Choose any one of our Services!</h4>
+                        <Card.Body>
+                            {/* <Card.Title>Card Title</Card.Title> */}
+                            {/* <Button variant="dark">repair laptops</Button>
+                        </Card.Body>
 
-                        <Form>
-                            <Button block variant = "info"  type="submit"  value = "Visiting and Diagnosis – 199" onClick = {storeordertolocal} >Visiting and Diagnosis – 199</Button>
-                            <h6 className = "pb-2 pt-4" style={{textAlign:"left"}}>Software Issues </h6>
+                    </Card> */}
+                    <Form>
+                    <Row className = "my-3">
+                        <Col md={{ span: 7, offset: 2 }} ><Form.Control placeholder="What can i repair today?" /></Col>
+                        <br/>
+                    </Row>
+                    </Form>
+                    
 
-                            <Button block variant = "info"  type="submit"  value = "Software Issues - BIOS Troubleshooting - 299" onClick = {storeordertolocal} >BIOS Troubleshooting - 299</Button>
-                            <Button block variant = "info"  type="submit"  value = "Software Issues - Drivers Troubleshooting - 299" onClick = {storeordertolocal} >Drivers Troubleshooting - 299 </Button>
-                            <Button block variant = "info"  type="submit"  value = "Software Issues - Windows Formatting - 399" onClick = {storeordertolocal} >Windows Formatting - 399</Button>
+                    <Row id = "row1">
+                        <Col id = "imgcol"   md={{ span: 2, offset: 1 }} >
+                            <Img src = {lp} rounded style={{width:"20vh"}}/><br/>
+                            {/* <Card.Link href="#" style = {{color : "black"}}>Card Link</Card.Link> */}
+                            <Button variant = "dark" style = {{width:"120px"}} href = "/laptop-repair">Laptop</Button>
+
+                        </Col>
+                        <Col id = "imgcol"  md={{ span: 2, offset: 1 }}>
+                        <Img src = {lp} rounded style={{width:"20vh"}}/><br/>
+                            <Button variant = "dark" style = {{width:"120px"}}>Mobile</Button>
+
                             
-                            <h6 className = "pb-2 pt-4" style={{textAlign:"left"}}>	Data Backup </h6>
+                        </Col>
+                        <Col id = "imgcol"   md={{ span: 2, offset: 1 }}>
+                        <Img src = {lp} rounded style={{width:"20vh"}}/><br/>
+                            <Button variant = "dark" style = {{width:"120px"}}>Printer</Button>
 
-                            <Button block variant = "info"  type="submit"  value = "Data Backup - 100+ GB - 499" onClick = {storeordertolocal} >100+ GB - 499</Button>
-                        </Form>
-                        
-                
-                    </Container>
+                            
+                        </Col>
+                    </Row>
+
+                    <Row id = "row1">
+                        <Col id = "imgcol"   md={{ span: 2, offset: 1 }} >
+                            <Img src = {lp} rounded style={{width:"20vh"}}/><br/>
+                            {/* <Card.Link href="#" style = {{color : "black"}}>Card Link</Card.Link> */}
+                            <Button variant = "dark" style = {{width:"120px"}}>Projector</Button>
+
+                        </Col>
+                        <Col id = "imgcol"  md={{ span: 2, offset: 1 }}>
+                        <Img src = {lp} rounded style={{width:"20vh"}}/><br/>
+                            <Button variant = "dark" style = {{width:"120px"}}>Printer</Button>
+
+                            
+                        </Col>
+                        <Col id = "imgcol"   md={{ span: 2, offset: 1 }}>
+                        <Img src = {lp} rounded style={{width:"20vh"}}/><br/>
+                            <Button variant = "dark" style = {{width:"120px"}}>TV</Button>
+
+                            
+                        </Col>
+                    </Row>
+
+                    {/* <Row className = 'my-3' >
+                        <Col >
+                        <Img src = {lp} rounded style={{width:"20vh"}}/><br/>
+                            <Button variant = "dark" style = {{width:"120px"}}> card link</Button>
+
+                            
+                        </Col>
+                        <Col >
+                        <Img src = {lp} rounded style={{width:"20vh"}}/><br/>
+                            <Button variant = "dark" style = {{width:"120px"}}> card link</Button>
+
+                            
+                        </Col>
+                        <Col >
+                        <Img src = {lp} rounded style={{width:"20vh"}}/><br/>
+                            <Button variant = "dark" style = {{width:"120px"}}> card link</Button>
+
+                            
+                        </Col>
+                    </Row> */}
                 </Col>
-                
 
             </Row>
 
+        </Container>
+        <Container className = "mx-auto mt-5">
+            <Button variant = "info" href =  "/admin-login-form">
+                Are you an admin?
+            </Button>
         </Container>
         
     </Container>

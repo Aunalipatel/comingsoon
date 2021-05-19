@@ -18,8 +18,7 @@ import { faPhoneSquareAlt } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import Image from 'react-bootstrap/Image';
-
-import { Auth } from 'aws-amplify';
+import axios from 'axios';
 
 function NavbarComponent() {
   const [sidebar, setSidebar] = useState(false);
@@ -30,21 +29,23 @@ function NavbarComponent() {
   const [codeSent, setCodeSent] = useState(false);
   const [user, setUser] = useState(null);
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const [signupEmail, setSignupEmail] = useState('');
   const [name, setName] = useState('');
   const [code, setCode] = useState();
-  const [password, setPassword] = useState('');
   const [signupPassword, setSignupPassword] = useState('');
   const [confirmPass, setConfirmPass] = useState('');
-  // const [loggedIn,setLoggedIn] = useState(false);
+  const [phone, setPhone] = useState('');
+  const [smsOtp, setSmsOtp] = useState('');
+  const [hash, setHash] = useState('');
 
   const showSidebar = () => {
     setSidebar(!sidebar);
   };
 
-  const showotp_Sidebar = (e) => {
+  const showotp_Sidebar = () => {
     setotp_Sidebar(!otp_sidebar);
-    e.preventDefault();
     console.log('showotpsidebar clicked');
   };
   const showsigninemail = (e) => {
@@ -64,15 +65,6 @@ function NavbarComponent() {
     setsignupemail(!signupemail);
     e.preventDefault();
   };
-  const signinemail = () => {
-    Auth.signIn(email, password)
-      .then((user) => {
-        console.log(user);
-        setUser(user);
-        closeallsliders();
-      })
-      .catch((err) => console.log('error', err));
-  };
   const closeallsliders = () => {
     setSidebar(false);
     setotp_Sidebar(false);
@@ -80,54 +72,40 @@ function NavbarComponent() {
     setsignupslider(false);
     setsignupemail(false);
   };
-  const signup = () => {
-    Auth.signUp({
-      username: signupEmail,
-      password: signupPassword,
-      attributes: {
-        name: name,
-        email: signupEmail,
-      },
-      validationData: [],
-    })
-      .then((user) => {
-        console.log('success', user);
-        setCodeSent(true);
+  const sendOTP = () => {
+    axios
+      .post('http://localhost:5000/auth/sendOTP', {
+        phone: phone,
       })
-      .catch((err) => console.log('error', err));
+      .then((res) => {
+        console.log(res.data.otp);
+        console.log(res);
+        const resHash = res.data.hash;
+        setHash(resHash);
+      });
   };
-  const verifyCode = () => {
-    Auth.confirmSignUp(signupEmail, code, {
-      forceAliasCreation: true,
-    })
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
-  };
-  const logout = async () => {
-    try {
-      await Auth.signOut();
-      setUser(null);
-    } catch (e) {
-      console.log('error:', e);
-    }
-  };
-
-  useEffect(() => {
-    Auth.currentAuthenticatedUser({
-      bypassCache: false,
-    })
-      .then((user) => {
-        console.log(user);
-        setUser(user);
+  const confirmOTP = () => {
+    axios
+      .post('http://localhost:5000/auth/verifyOTP', {
+        phone: phone,
+        hash: hash,
+        otp: smsOtp,
       })
-      .catch((err) => console.log(err));
-  }, []);
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   return (
     <div className="Navbardiv">
       {/* <Container> */}
 
-      <Navbar bg="dark" variant="dark" fixed="top" id="nav1" className="px-5">
+     
+
+        <Navbar bg="dark" variant="dark" fixed="top" id="nav1" className="px-5">
         {/* <Navbar.Brand href="#home" className = "px-3">TechguyService</Navbar.Brand>
                 align-top height="38"
                 */}
@@ -167,50 +145,27 @@ function NavbarComponent() {
         </Nav>
 
         <Nav id="nav1">
-          {/* <Nav.Link style={{ color: 'white' }} classname="p-0 m-0">
-            <FontAwesomeIcon
-              className="ml-1 mr-4 p-0"
-              icon={faPhoneSquareAlt}
-              size="2x"
-            />
-          </Nav.Link>
-          <Nav.Link style={{ color: 'white' }} classname="p-0 m-0">
-            <FontAwesomeIcon
-              className="ml-1 mr-4 p-0"
-              icon={faShoppingCart}
-              size="2x"
-            />
-          </Nav.Link>
+          
+
           <Nav.Link
             style={{ color: 'white', fontSize: '20px' }}
             classname="mx-5"
+            onClick={showSidebar}
           >
-            Cart
-          </Nav.Link> */}
+            Sign In
+          </Nav.Link>
 
-          {user && (
-            <NavDropdown
-              style={{ color: 'white', fontSize: '20px' }}
-              title="Profile"
-              id="nav-profile"
-              className="mx-5"
-            >
-              <NavDropdown.Item eventKey="4.1">My Services</NavDropdown.Item>
-              <NavDropdown.Item eventKey="4.2" onClick={logout}>
-                LogOut
-              </NavDropdown.Item>
-            </NavDropdown>
-          )}
+          {/* add user conditional for the profile part -> */}
 
-          {!user && (
-            <Nav.Link
-              style={{ color: 'white', fontSize: '20px' }}
-              classname="mx-5"
-              onClick={showSidebar}
-            >
-              Sign In
-            </Nav.Link>
-          )}
+          <NavDropdown
+            style={{ color: 'white', fontSize: '20px' }}
+            title="Profile"
+            id="nav-profile"
+            className="mx-5"
+          >
+            <NavDropdown.Item eventKey="4.1">My Services</NavDropdown.Item>
+            <NavDropdown.Item eventKey="4.2">LogOut</NavDropdown.Item>
+          </NavDropdown>
 
           {/* <Button variant="outline-light" className = " ml-5"  onClick={() => setShow(true)}>Sign In</Button> */}
         </Nav>
@@ -257,23 +212,25 @@ function NavbarComponent() {
                 custom
               >
                 <option value="0">+91</option>
-                <option value="1">+121</option>
-                <option value="2">+11 </option>
               </Form.Control>
               <Form.Control
                 type="text"
                 className="ml-1"
                 placeholder="Enter phone number"
                 variant="dark"
+                value={phone}
+                onChange={(event) => setPhone(event.target.value)}
               />
             </Form.Group>
 
             <Button
               block
               variant="outline-info"
-              type="submit"
               className="mx-3 "
-              onClick={showotp_Sidebar}
+              onClick={() => {
+                showotp_Sidebar();
+                sendOTP();
+              }}
             >
               Continue
               {/* change button to link with a onclick function to match theme, 
@@ -281,13 +238,7 @@ function NavbarComponent() {
             </Button>
 
             <h4 className="mx-auto my-4">OR</h4>
-            <Button
-              block
-              variant="danger"
-              type="submit"
-              className="mx-3 "
-              onClick={showsigninemail}
-            >
+            <Button block variant="danger" type="submit" className="mx-3 ">
               <FontAwesomeIcon
                 className="ml-0 mr-2 p-0"
                 icon={faEnvelope}
@@ -302,9 +253,6 @@ function NavbarComponent() {
               variant="primary"
               className="mx-3 "
               id="facebookbutton"
-              onClick={() => {
-                Auth.federatedSignIn({ provider: 'Facebook' });
-              }}
             >
               <FontAwesomeIcon
                 className="ml-0 mr-2 p-0"
@@ -313,15 +261,7 @@ function NavbarComponent() {
               />{' '}
               Login with Facebook
             </Button>
-            <Button
-              block
-              variant="light"
-              className="mx-3 "
-              id="googlebutton"
-              onClick={() => {
-                Auth.federatedSignIn({ provider: 'Google' });
-              }}
-            >
+            <Button block variant="light" className="mx-3 " id="googlebutton">
               <Image
                 className="ml-0 mr-2 p-0"
                 style={{ width: '20px' }}
@@ -379,9 +319,17 @@ function NavbarComponent() {
                 className="ml-2"
                 placeholder="Enter OTP"
                 variant="dark"
+                value={smsOtp}
+                onChange={(event) => setSmsOtp(event.target.value)}
               />
 
-              <Button variant="outline-info" type="submit" className="mx-3 ">
+              <Button
+                variant="outline-info"
+                className="mx-3 "
+                onClick={() => {
+                  confirmOTP();
+                }}
+              >
                 Continue
                 {/* change button to link with a onclick function to match theme, 
                             how it needs to be done is on stack overflow  https://www.google.com/search?q=can+i+add+a+onclick+to+a+link&rlz=1C1CHBF_enIN914IN914&oq=can+i+add+a+onclick+to+a+link&aqs=chrome..69i57j33i22i29i30l6.13467j0j7&sourceid=chrome&ie=UTF-8 */}
@@ -436,12 +384,7 @@ function NavbarComponent() {
             </Form.Group>
             <br />
 
-            <Button
-              block
-              variant="outline-info"
-              className=" "
-              onClick={() => signinemail()}
-            >
+            <Button block variant="outline-info" className=" ">
               Continue
               {/* change button to link with a onclick function to match theme, 
                             how it needs to be done is on stack overflow  https://www.google.com/search?q=can+i+add+a+onclick+to+a+link&rlz=1C1CHBF_enIN914IN914&oq=can+i+add+a+onclick+to+a+link&aqs=chrome..69i57j33i22i29i30l6.13467j0j7&sourceid=chrome&ie=UTF-8 */}
@@ -574,12 +517,7 @@ function NavbarComponent() {
                 />
               </Form.Group>
 
-              <Button
-                block
-                variant="primary"
-                className=" "
-                onClick={() => signup()}
-              >
+              <Button block variant="primary" className=" ">
                 Register!
                 {/* change button to link with a onclick function to match theme, 
                             how it needs to be done is on stack overflow  https://www.google.com/search?q=can+i+add+a+onclick+to+a+link&rlz=1C1CHBF_enIN914IN914&oq=can+i+add+a+onclick+to+a+link&aqs=chrome..69i57j33i22i29i30l6.13467j0j7&sourceid=chrome&ie=UTF-8 */}
@@ -597,12 +535,7 @@ function NavbarComponent() {
                   onChange={(event) => setCode(event.target.value)}
                 />
               </Form.Group>
-              <Button
-                block
-                variant="primary"
-                className=" "
-                onClick={() => verifyCode()}
-              >
+              <Button block variant="primary" className=" ">
                 Verify code
                 {/* change button to link with a onclick function to match theme, 
                             how it needs to be done is on stack overflow  https://www.google.com/search?q=can+i+add+a+onclick+to+a+link&rlz=1C1CHBF_enIN914IN914&oq=can+i+add+a+onclick+to+a+link&aqs=chrome..69i57j33i22i29i30l6.13467j0j7&sourceid=chrome&ie=UTF-8 */}

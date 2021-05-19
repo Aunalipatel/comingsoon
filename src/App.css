@@ -1,24 +1,158 @@
 .App {
   text-align: center;
 }
-#popo{
-  min-height: 350px;
-  background-color: beige;
+#popo {
+  min-height: 410px;
+  /* background-color: beige; */
+  background-image: url('./screens/assets/images/laptoprepair-bg2.jpeg');
+  /* width : 100% ; */
+  color: white;
 }
+#xx {
+  min-height: 410px;
 
-#col{
+  color: white;
+}
+#form-laptoprepair {
+  position: fixed;
+  right: 50px;
+  width: 375px;
+  height: 430px;
+  top: 120px;
+  background: #000000;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+  text-align: left;
+}
+#LaptopRepairScreen {
+  background: #011b41;
+}
+/* #slider{
+  font-size: 25px;
+  color: aliceblue;
+  background-color: #282c34;
+  position: fixed;
+  left:75% ;
+  height: 100vh;
+  z-index: 5;
+  
+} */
+#mini-nav {
+  /* position: absolute; */
+  width: 750px;
+  height: 115px;
+  left: 0px;
+  background-color: white;
+  margin: 0px 20px;
+  padding: 0px 0px;
+  color: black;
+  /* top: 573px; */
+
+  /* background: #ffffff; */
+}
+#col {
   padding-right: 25px;
 }
-#imgcol{
+#imgcol {
   padding: 5px;
 }
-#row1{
+#row1 {
   margin-bottom: 0;
 }
-#container-4{
+#container-4 {
   padding-top: 20px;
   background-color: rgba(128, 128, 128, 0.233);
   height: 100vh;
   margin-top: 0px;
 }
 
+#lol {
+  padding: 0%;
+  min-height: 552px;
+  z-index: 1;
+  background-image: url('./screens/assets/images/bgfinal.jpeg');
+  /* linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(255,255,255,1) 100%); */
+  /* linear-gradient(0deg, rgba(247, 3, 3, 0.7) 0%, rgb(247, 9, 9) 100%); */
+}
+#bghome {
+  z-index: 0;
+}
+#kk {
+  width: 100%;
+  height: 552px;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(255, 255, 255, 0.103) 100%
+  );
+  margin: 0px 0px;
+  padding: 0px 0px;
+}
+
+#lol1 {
+  padding: 0%;
+  height: 120px;
+  background-color: rgba(245, 245, 220, 0);
+  z-index: 2;
+}
+#lol2 {
+  /* z-index: 3; */
+}
+
+#facebookbutton {
+  /* color: black; */
+  background-color: #4267b2;
+}
+#googlebutton {
+  /* color: black; */
+  background-color: white;
+}
+/* 
+.carousel-item{
+    height : 100px;
+    width : 100px;
+} */
+
+.carousel-1 {
+  height: 200px;
+  width: 200px;
+}
+#otp_form {
+  width: 100%;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
