@@ -4,9 +4,11 @@
 #popo {
   min-height: 410px;
   /* background-color: beige; */
-  background-image: url('./screens/assets/images/laptoprepair-bg2.jpeg');
+  background-image: url('./screens/assets/images/laptoprepair.jpeg');
   /* width : 100% ; */
+
   color: white;
+  /* color: green; */
 }
 #xx {
   min-height: 410px;

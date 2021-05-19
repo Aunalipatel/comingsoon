@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import bg from './laptoprepair.jpeg';
 
 function LaptopRepairScreen() {
   const [laptop, setLaptop] = useState('');
@@ -148,7 +149,9 @@ function LaptopRepairScreen() {
         {/* <Button>lap</Button> */}
       </Container>
 
-      <Container id="popo" fluid className="mt-4"></Container>
+      <Container id="popo" fluid className="mt-4" 
+      // style={{backgroundImage: {bg} }}
+      ></Container>
 
       <Container id="form-laptoprepair">
         <div className="pt-3 ml-2 pb-3">
